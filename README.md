@@ -1,5 +1,3 @@
-![ng-fokus](thumbnail.png)
-
 # ng-fokus
 
 A ng-fokus é uma aplicação da ferramenta do método Pomodoro (gestão de tarefas), baseado no funcionamento do site promofocus. O projeto está desenvolvido em Angular 18 com service worker.
