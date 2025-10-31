@@ -1,3 +1,5 @@
+import { NotificationService } from './../../services/notification.service';
+import { Notification } from './../../../../../node_modules/rxjs/src/internal/Notification';
 import { Howl } from 'howler';
 import { CommonModule } from '@angular/common';
 import { Component, effect, Inject, inject } from '@angular/core';
@@ -32,7 +34,9 @@ export class TimerControlComponent {
 
   context = this.contextService.contextSignal$;
 
-  constructor() {
+  constructor(
+    private notificationService: NotificationService
+  ) {
     effect(() => {
       this.setTimerSecond();
       this.configTimer();
@@ -76,6 +80,7 @@ export class TimerControlComponent {
       this.setTimerSecond();
       this.configTimer();
 
+      this.sendNotification();
       return;
     }
 
@@ -105,5 +110,28 @@ export class TimerControlComponent {
         this.timerInSeconds = 15;
         break;
     }
+  }
+
+  private async sendNotification() {
+   try {
+      await this.notificationService.requestPermission();
+
+      const context = this.context();
+
+      if(context.includes('descanso')){
+        this.notificationService.showNotification('Notificação', {
+          body: 'Tempo de descanso finalizado!'
+        });
+
+        return
+      }
+
+        this.notificationService.showNotification('Notificação', {
+          body: 'Tempo de foco finalizado!',
+        });
+
+   } catch (error){
+    console.error('Ocorreu um erro ao enviar notificação' , error);
+   }
   }
 }
