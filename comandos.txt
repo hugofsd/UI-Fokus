@@ -4,7 +4,7 @@ ng build --verbose
 
 # Navegar para a pasta de output do build
 # IMPORTANTE: A pasta dist/browser é onde o Angular coloca os arquivos finais para produção
-cd "C:\Users\Windows 10\Desktop\Alura Front-end\service_workers-signals-SR\ng-fokus\dist\ng-fokus\browser"
+cd "C:\Users\hugo6\OneDrive\Área de Trabalho\Repositorio\UI-Fokus\dist\ng-fokus\browser"
 
 # Servir a aplicação buildada localmente
 # O http-server é um servidor estático simples para testar o build de produção
